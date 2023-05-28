@@ -30,7 +30,14 @@ export const musicSlice = createSlice({
     deleteMusic: (state, action) => {
       const id = action.payload;
       state.musics = state.musics.filter((music) => music.id !== id);
-    }
+    },
+    // Additional named exports
+    addMusicSuccess: (state, action) => {},
+    addMusicFailure: (state, action) => {},
+    updateMusicSuccess: (state, action) => {},
+    updateMusicFailure: (state, action) => {},
+    deleteMusicSuccess: (state, action) => {},
+    deleteMusicFailure: (state, action) => {},
   }
 });
 
@@ -40,7 +47,13 @@ export const {
   getMusicFailure,
   addMusic,
   updateMusic,
-  deleteMusic
+  deleteMusic,
+  addMusicSuccess,
+  addMusicFailure,
+  updateMusicSuccess,
+  updateMusicFailure,
+  deleteMusicSuccess,
+  deleteMusicFailure,
 } = musicSlice.actions;
 
 export default musicSlice.reducer;

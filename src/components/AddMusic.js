@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
+import { addMusic } from '../mucisState';
 import {
     FormContainer,
     FormGroup,
@@ -28,15 +29,15 @@ const AddMusicPage = ({onClose}) => {
     
       // Check if all required fields are filled in
       if (title && artist && album && duration && genre) {
-        // const newMusic = {
-        //   title: title,
-        //   artist: artist,
-        //   album: album,
-        //   duration: duration,
-        //   genre: genre,
-        // };
-        // dispatch(addMusic(newMusic));
-        // console.log(newMusic);
+        const newMusic = {
+          title: title,
+          artist: artist,
+          album: album,
+          duration: duration,
+          genre: genre,
+        };
+        dispatch(addMusic(newMusic));
+        console.log(newMusic);
     
         // Reset the form fields after adding the music
         setTitle('');
@@ -45,7 +46,7 @@ const AddMusicPage = ({onClose}) => {
         setDuration(0);
         setGenre('');
   
-        navigate('/');
+        onClose();
       }
     };
     

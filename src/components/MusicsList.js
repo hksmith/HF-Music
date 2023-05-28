@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiEdit, FiTrash2, FiUser, FiDisc, FiClock, FiMusic, FiPlusCircle } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import AddMusicPage from './AddMusic';
+import { deleteMusic } from '../mucisState';
 import {
   Container,
   Sidebar,
@@ -34,7 +35,7 @@ import {
   StyledIcon,
 } from '../styles/MusicsListStyle';
 
-const MusicList = ({ musics, onClose }) => {
+const MusicList = ({ musics }) => {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
@@ -43,15 +44,11 @@ const MusicList = ({ musics, onClose }) => {
     const dispatch = useDispatch();
   
     const handleDelete = (musicId) => {
-    //   dispatch(deleteMusic(musicId));
+      dispatch(deleteMusic(musicId));
     };
   
     const handleEdit = (musicId) => {
       navigate(`/edit-music/${musicId}`);
-    };
-  
-    const handleFilterChange = (event) => {
-      setSelectedFilter(event.target.value);
     };
   
     const handleSearchChange = (event) => {
