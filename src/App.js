@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMusicFetch } from './mucisState';
+import styled from '@emotion/styled';
+import MusicsList from './components/MusicsList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* Add this line to hide the overflow of the container */
+`;
+
+const Content = styled.div`
+  flex-grow: 1;
+  overflow: auto; /* Add this line to enable scrolling within the content */
+`;
 
 function App() {
+  const musics = useSelector(state => state.musics.musics);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMusicFetch());
+  }, [dispatch]);
+
+  console.log(musics)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container>
+        <Content>
+          <Routes>
+            <Route path="/" element={<MusicsList musics={musics} />} />
+          </Routes>
+        </Content>
+      </Container>
+    </Router>
   );
-}
+};
 
 export default App;
