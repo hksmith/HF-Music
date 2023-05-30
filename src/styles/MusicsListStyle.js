@@ -206,7 +206,6 @@ export const AddButton = styled(Link)`
   cursor: pointer;
   margin-left: 70%;
   font-size: 30px;
-  position: fixed;
 `;
 
 export const SearchInput = styled.input`
