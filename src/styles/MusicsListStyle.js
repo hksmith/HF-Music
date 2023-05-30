@@ -84,11 +84,6 @@ export const TopSection = styled.div`
   align-items: center;
 `;
 
-export const AlbumImage = styled.img`
-  max-width: 100%;
-  height: 100%;
-`;
-
 export const BottomSection = styled.div`
   background: linear-gradient(to left top, #000000, #4B0082);
   flex: 1;

@@ -4,7 +4,7 @@ import { FiEdit, FiTrash2, FiUser, FiDisc, FiClock, FiMusic, FiPlusCircle } from
 import AddMusicPage from './AddMusic';
 import EditMusicPage from './EditMusic';
 import { deleteMusic } from '../store/mucisState';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   Container,
@@ -15,7 +15,6 @@ import {
   SidebarLink,
   Content,
   TopSection,
-  AlbumImage,
   BottomSection,
   MusicContainer,
   MusicItem,
