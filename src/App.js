@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMusicFetch } from './mucisState';
+import { getMusicFetch } from './store/mucisState';
 import styled from '@emotion/styled';
 import MusicsList from './components/MusicsList';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
 
 const Container = styled.div`
   display: flex;
@@ -25,8 +28,6 @@ function App() {
     dispatch(getMusicFetch());
   }, [dispatch]);
 
-  console.log(musics)
-
   return (
     <Router>
       <Container>
@@ -35,9 +36,10 @@ function App() {
             <Route path="/" element={<MusicsList musics={musics} />} />
           </Routes>
         </Content>
+        <ToastContainer />
       </Container>
     </Router>
   );
-};
+}
 
 export default App;

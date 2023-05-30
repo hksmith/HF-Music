@@ -7,7 +7,6 @@ export const FormContainer = styled.div`
   padding: 20px;
   background: linear-gradient(to right bottom, #000000, #4B0082);
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 export const FormGroup = styled.div`
@@ -30,7 +29,7 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  background-color: #007bff;
+  background-color: #443ffa;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -44,13 +43,11 @@ export const PopupStyles = styled.div`
   left: 50%;
   width: 35%;
   height: 90%;
-  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: left;
   transform: translate(-50%, -50%);
-  background-color: black;
   border: 1px solid rgb(201, 201, 201);
   border-radius: 50px;
   padding: 20px;

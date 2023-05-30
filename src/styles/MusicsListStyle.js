@@ -80,6 +80,8 @@ export const TopSection = styled.div`
   margin-top: 10px;
   over-flow: hidden;
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
 `;
 
 export const AlbumImage = styled.img`
@@ -123,24 +125,27 @@ export const SongArtist = styled.p`
 `;
 
 export const MusicContainer = styled.div`
-  background-color: #ffffff;
+  background-color: hsl(269, 100%, 40%);
   margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 10px;
+  border-radius: 15px;
 `;
 
 export const MusicItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #4A0f7f;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  color: gray;
 
   &:hover {
-    background-color: #e0e0e0;
+    background-color: hsl(269, 100%, 40%);
+    color: white;
   }
 `;
 
@@ -200,13 +205,13 @@ export const DeleteButton = styled.button`
 export const AddButton = styled(Link)`
   color: hsl(290, 100%, 40%);
   border: none;
-  padding: 6px 5px;
+  padding: 5px;
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
-  margin-left: 90%;
-  margin-bottom: 50%;
+  margin-left: 70%;
   font-size: 30px;
+  position: fixed;
 `;
 
 export const SearchInput = styled.input`
@@ -222,4 +227,12 @@ export const SearchInput = styled.input`
 export const StyledIcon = styled(FaMusic)`
   font-size: 22px;
   color: hsl(310, 100%, 40%);
+`;
+
+export const TopHeading = styled.h2`
+  margin-top: 0;
+  padding: 40px;
+  white-space: nowrap;
+  -webkit-background-clip: text;
+  color: hsl(300, 100%, 40%);
 `;

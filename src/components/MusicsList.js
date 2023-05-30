@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FiEdit, FiTrash2, FiUser, FiDisc, FiClock, FiMusic, FiPlusCircle } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
 import AddMusicPage from './AddMusic';
-import { deleteMusic } from '../mucisState';
+import EditMusicPage from './EditMusic';
+import { deleteMusic } from '../store/mucisState';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Container,
   Sidebar,
@@ -15,11 +17,6 @@ import {
   TopSection,
   AlbumImage,
   BottomSection,
-  Song,
-  SongImage,
-  SongInfo,
-  SongTitle,
-  SongArtist,
   MusicContainer,
   MusicItem,
   MusicInfo,
@@ -33,22 +30,21 @@ import {
   AddButton,
   SearchInput,
   StyledIcon,
+  TopHeading
 } from '../styles/MusicsListStyle';
 
 const MusicList = ({ musics }) => {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
     const [viewAdd, setViewAdd] = useState(false);
+    const [viewEdit, setViewEdit] = useState(false);
+    const [specificId, setSpecificId] = useState(null);
   
     const dispatch = useDispatch();
   
     const handleDelete = (musicId) => {
       dispatch(deleteMusic(musicId));
-    };
-  
-    const handleEdit = (musicId) => {
-      navigate(`/edit-music/${musicId}`);
+      toast.success('Music deleted successfully!');
     };
   
     const handleSearchChange = (event) => {
@@ -88,19 +84,15 @@ const MusicList = ({ musics }) => {
             <SidebarListItem>
               <SidebarLink href="#" onClick={() => setSelectedFilter('Mezmur')}>Mezmur</SidebarLink>
             </SidebarListItem>
-            {/* Add more album options here */}
           </SidebarList>
         </Sidebar>
         <Content>
           <TopSection style={{padding: '20px', width: '200px'}}>
-            <AlbumImage src="" alt="Album Image" />
-            <AddButton onClick={() => {setViewAdd(true)}}>
-              <FiPlusCircle />
-            </AddButton>
+
           </TopSection>
           <BottomSection>
           <TopSection style={{height: '100px'}}>
-            <AlbumImage src="" alt="Album Image" />
+            <TopHeading>{selectedFilter || "All Albums"}</TopHeading>
             <AddButton onClick={() => {setViewAdd(true)}}>
               <FiPlusCircle />
             </AddButton>
@@ -139,7 +131,7 @@ const MusicList = ({ musics }) => {
                     </MusicDetails>
                   </MusicInfo>
                   <div>
-                    <EditButton onClick={() => handleEdit(music.id)}>
+                    <EditButton onClick={() => {setSpecificId(music.id); setViewEdit(true);}}>
                       <FiEdit />
                     </EditButton>
                     <DeleteButton onClick={() => handleDelete(music.id)}>
@@ -154,6 +146,8 @@ const MusicList = ({ musics }) => {
       </Container>
       }{viewAdd &&
         <AddMusicPage onClose={() => setViewAdd(false)} />
+      }{viewEdit &&
+        <EditMusicPage musicId={specificId} onClose={() => setViewEdit(false)} />
       }
       </div>
     );

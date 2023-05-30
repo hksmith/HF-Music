@@ -18,6 +18,7 @@ export const musicSlice = createSlice({
       state.isLoading = false;
     },
     addMusic: (state, action) => {
+      console.log(action);
       state.musics.push(action.payload);
     },
     updateMusic: (state, action) => {

@@ -39,15 +39,17 @@ function* workWAddMusic(action) {
 }
 
 function* workWUpdateMusic(action) {
+  console.log(action);
   try {
     const response = yield call(fetch, `${App_URL}/${action.payload.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(action.payload.data),
+      body: JSON.stringify(action.payload.updatedMusic),
     });
     const updatedMusic = yield response.json();
+    console.log(updatedMusic);
     yield put(updateMusicSuccess(updatedMusic));
   } catch (error) {
     yield put(updateMusicFailure());
